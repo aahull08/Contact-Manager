@@ -1,0 +1,23 @@
+[
+  {
+    "full_name": "Brian",
+    "phone_number": "3472",
+    "email": "asdfsa@gmail.com",
+    "tags": "sales,engineering",
+    "id": 5
+  },
+  {
+    "full_name": "Victor Reyes",
+    "phone_number": "09876543210",
+    "email": "vpr@example.com",
+    "tags": "engineering",
+    "id": 6
+  },
+  {
+    "full_name": "Pete Hans",
+    "phone_number": "54321098",
+    "email": "ph@example.co",
+    "tags": "sales",
+    "id": 7
+  }
+]

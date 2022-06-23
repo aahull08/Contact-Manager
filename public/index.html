@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contact Manager</title>
+  <link rel="stylesheet" href="stylesheets\whitespace-reset.css">
+  <link rel="stylesheet" href="stylesheets\style.css">
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/handlebars.js"></script>
+  <script src="javascripts/javascript.js"></script>
+</head>
+<body>
+  <header>
+    <h1><a href="#">Contact Manager</a></h1>
+    <h2>Using Javascript, Handlebars, HTML, and CSS</h2>
+  </header>
+  <main>
+    <div class="home">
+      <div id="activity-bar">
+        <a class="contact-btn add" id="add-contact-btn" href="#">Add Contact</a>
+        <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+      </div>
+      <div id="contact-list">
+        <!-- Where adding Contacts -->
+      </div>
+    </div>
+    <div id="contact-form">
+      <div id="form-title">
+        <h3>Create Contact</h3>
+      </div>
+      <form action="/action_page.php">
+        <input type="hidden" id="contactId" name="contactId" value="">
+        <div class="inputs">
+          <label for="full_name">Full name:</label>
+          <input type="text" id="full_name" name="full_name" value="">
+        </div>
+        <div class="inputs">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" value="">
+        </div>
+        <div class="inputs">
+          <label for="phone_number">Phone Number:</label>
+          <input type="text" id="phone_number" name="phone_number" value="">
+        </div>
+        <div class="tags">
+          <div class="tags checkbox">
+            <input type="checkbox" id="marketing" name="tags" value="marketing">
+            <label for="marketing">Marketing</label>
+          </div>
+          <div class="tags checkbox">
+            <input type="checkbox" id="sales" name="tags" value="sales">
+            <label for="sales">Sales</label>
+          </div>
+          <div class="tags checkbox">
+            <input type="checkbox" id="engineering" name="tags" value="engineering">
+            <label for="engineering">Engineering</label>
+          </div>
+        </div>
+        <div class="buttons">
+          <input type="submit" value="Submit">
+          <a class="cancel" href="">Cancel</a>
+        </div>
+      </form> 
+    </div>
+  </main>
+
+  <script id="contactsTemplate" type="text/x-handlebars">
+    {{#each contacts}} 
+    <div class="contact-card" id="{{id}}">
+      <h4>{{full_name}}</h4>
+      <dl>
+        <dt>Phone Number:</dt>
+        <dd>{{phone_number}}</dd>
+        <dt>E-Mail Address:</dt>
+        <dd>{{email}}</dd>
+        <dt>Tags</dt>
+        <dd>{{tags}}</dd>
+      </dl>
+      <div class="btn-container">
+        <a class="contact-btn edit" href="http://localhost:3000/api/contacts/{{id}}"><img src="images\edit.png"><p>Edit</p></a>
+        <a class="contact-btn remove" href="http://localhost:3000/api/contacts/{{id}}"><img src="images\delete.png"><p>Remove</p></a>
+      </div>
+    </div>
+    {{/each}}
+  </script>
+</body>
+</html>
