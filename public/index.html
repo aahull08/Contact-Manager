@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="stylesheets\style.css">
   <script src="javascripts/jquery.js"></script>
   <script src="javascripts/handlebars.js"></script>
-  <script src="javascripts/javascript.js"></script>
+  <script src="javascripts/mvcjavascript.js"></script>
 </head>
 <body>
   <header>
@@ -17,9 +17,18 @@
     <h2>Using Javascript, Handlebars, HTML, and CSS</h2>
   </header>
   <main>
-    <div class="home">
-      <div id="activity-bar">
+    <div class="home active">
+      <div id="nav-bar">
         <a class="contact-btn add" id="add-contact-btn" href="#">Add Contact</a>
+        <div class="tagFilters">
+          <label for="tags">Filter Contacts by Tag: </label>
+          <select name="tags" id="tags">
+            <option value="all">All</option>
+            <option value="sales">Sales</option>
+            <option value="engineering">Engineering</option>
+            <option value="marketing">Marketing</option>
+          </select>
+        </div>
         <input type="text" name="search-bar" id="search-bar" placeholder="Search">
       </div>
       <div id="contact-list">
@@ -76,11 +85,11 @@
         <dt>E-Mail Address:</dt>
         <dd>{{email}}</dd>
         <dt>Tags</dt>
-        <dd>{{tags}}</dd>
+        <dd class="contact-Tags">{{tags}}</dd>
       </dl>
       <div class="btn-container">
-        <a class="contact-btn edit" href="http://localhost:3000/api/contacts/{{id}}"><img src="images\edit.png"><p>Edit</p></a>
-        <a class="contact-btn remove" href="http://localhost:3000/api/contacts/{{id}}"><img src="images\delete.png"><p>Remove</p></a>
+        <a class="contact-btn edit" id="{{id}}" href="http://localhost:3000/api/contacts/{{id}}"><img src="images\edit.png"><p>Edit</p></a>
+        <a class="contact-btn remove" id="{{id}}" href="#"><img src="images\delete.png"><p>Remove</p></a>
       </div>
     </div>
     {{/each}}

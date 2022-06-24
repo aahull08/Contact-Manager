@@ -47,7 +47,7 @@ main{
   display: block;
 }
 
-#activity-bar{
+#nav-bar{
   background-color: rgb(240, 205, 240);
   border-radius: 10px;
   padding: 30px 0;
@@ -90,6 +90,10 @@ main{
   padding: 10px;
   border-bottom: 1px solid black;
   margin-bottom: 20px;
+}
+
+.contact-card.ishidden{
+  display: none;
 }
 
 h4{
