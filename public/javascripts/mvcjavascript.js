@@ -127,6 +127,7 @@ class View{
   resetTag(){
     this.getElement("#tags").value = "all";
   }
+
   displayEditForm(data){
     this.getElement("#contactId").value = data.id;
     this.getElement("#full_name").value = data.full_name;
@@ -195,6 +196,30 @@ class Controller{
     await this.view.displayContacts(await this.model.getContacts());
   }
 
+  validateInputs(target){
+    let data = new FormData(target);
+    if (this.invalidForm(data)){
+      alert("Please Finish filling out the form.");
+      return;
+    }
+
+    data = Object.fromEntries(data.entries());
+    let tags = document.querySelectorAll('input[type="checkbox"]:checked');
+    tags = Array.from(tags).map(x => x.value);
+    data["tags"] = tags.join(",");
+    let json = JSON.stringify(data);
+    if (data.contactId) {
+      this.editContact(json, data.contactId);
+    } else {
+      this.addContact(json);
+    }
+  }
+
+  invalidForm(data){
+    return (data.get("full_name") === "" ||
+    data.get("email") === "" ||
+    data.get("phone_number") === "");
+  }
   search(string){
     this.view.filterContacts(string);
   }
@@ -221,20 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault();
-    let data = new FormData(e.target);
-    data = Object.fromEntries(data.entries());
-    let tags = document.querySelectorAll('input[type="checkbox"]:checked');
-    tags = Array.from(tags).map(x => x.value);
-    data["tags"] = tags.join(",");
-    let json = JSON.stringify(data);
-    if (data.contactId) {
-      app.editContact(json, data.contactId);
-    } else {
-      app.addContact(json);
-    }
-
-
-
+    app.validateInputs(e.target);
   });
 
   document.querySelector("#contact-list").addEventListener("click", (e) => {
